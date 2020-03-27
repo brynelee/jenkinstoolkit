@@ -1,5 +1,5 @@
 ---
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jenkins
@@ -67,7 +67,8 @@ spec:
       volumes:
       - name: jenkinshome
         hostPath:
-          path: C:\Users\xiaodong\jenkins-data
+          path: /e/jenkins-data
+          type: DirectoryOrCreate
 
 ---
 apiVersion: v1
@@ -85,8 +86,8 @@ spec:
   - name: web
     port: 8080
     targetPort: web
-    NodePort: 30080
+    nodePort: 30080
   - name: agent
     port: 50000
     targetPort: agent
-    NodePort: 30580
+    nodePort: 30580
